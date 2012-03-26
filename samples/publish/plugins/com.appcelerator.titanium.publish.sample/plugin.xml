@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.appcelerator.titanium.publish.publishProviders">
+      <provider
+            class="com.appcelerator.titanium.publish.sample.SamplePublishType"
+            createPublishTargetUrl="https://wiki.appcelerator.org/display/guides2/Adding+a+new+Publish+Provider"
+            description="A sample publish provider that demonstrates how to implement a publish provider"
+            icon="icons/full/obj16/weather_clouds.png"
+            id="com.appcelerator.titanium.publish.testProvider.provider"
+            name="Sample Publish Provider"
+            preferencePageId="com.appcelerator.titanium.publish.preferences.SamplePreferencePage"
+            registerPublishTargetDialog="com.appcelerator.titanium.publish.sample.ui.SampleRegisterTargetDialog"
+            url="https://wiki.appcelerator.org/display/guides2/Adding+a+new+Publish+Provider"
+            wizard_icon="icons/full/wizban/clouds.png">
+         <supportedPlatform
+               name="iOS">
+         </supportedPlatform>
+         <supportedPlatform
+               name="Android">
+         </supportedPlatform>
+         <supportedPlatform
+               name="MobileWeb">
+         </supportedPlatform>
+         <supportedPlatform
+               name="BlackBerry">
+         </supportedPlatform>
+      </provider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+   <menuContribution
+         locationURI="menu:com.aptana.explorer.deploy?after=group.deploy">
+      <dynamic
+            class="com.appcelerator.titanium.publish.sample.ui.SampleContributionItem"
+            id="com.appcelerator.titanium.publish.SampleContributionItem">
+         <visibleWhen
+               checkEnabled="false">
+            <and>
+               <reference
+                     definitionId="com.appcelerator.titanium.isMobileProject">
+               </reference>
+               <or>
+                  <reference
+                        definitionId="com.appcelerator.titanium.isIPadProject">
+                  </reference>
+                  <reference
+                        definitionId="com.appcelerator.titanium.isIPhoneProject">
+                  </reference>
+                  <reference
+                        definitionId="com.appcelerator.titanium.isAndroidProject">
+                  </reference>
+                  <reference
+                        definitionId="com.appcelerator.titanium.isMobileWebProject">
+                  </reference>
+               </or>
+            </and>
+         </visibleWhen>
+      </dynamic>
+   </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.aptana.ui.io.preferences.RemotePreferencePage"
+            class="com.appcelerator.titanium.publish.sample.preferences.SamplePreferencePage"
+            id="com.appcelerator.titanium.publish.preferences.SamplePreferencePage"
+            name="Sample Publish Provider">
+      </page>
+   </extension>
+</plugin>
