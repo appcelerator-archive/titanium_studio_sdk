@@ -15,7 +15,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS
 {
-	private static final String BUNDLE_NAME = "com.appcelerator.titanium.publish.testprovider.preferences.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "com.appcelerator.titanium.publish.sample.preferences.messages"; //$NON-NLS-1$
 	public static String TestPreferencePage_Password_column;
 	public static String TestPreferencePage_URL_Columns;
 	public static String TestPreferencePage_Username_column;

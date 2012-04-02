@@ -8,7 +8,7 @@
             createPublishTargetUrl="https://wiki.appcelerator.org/display/guides2/Adding+a+new+Publish+Provider"
             description="A sample publish provider that demonstrates how to implement a publish provider"
             icon="icons/full/obj16/weather_clouds.png"
-            id="com.appcelerator.titanium.publish.testProvider.provider"
+            id="com.appcelerator.titanium.publish.sample.provider"
             name="Sample Publish Provider"
             preferencePageId="com.appcelerator.titanium.publish.preferences.SamplePreferencePage"
             registerPublishTargetDialog="com.appcelerator.titanium.publish.sample.ui.SampleRegisterTargetDialog"

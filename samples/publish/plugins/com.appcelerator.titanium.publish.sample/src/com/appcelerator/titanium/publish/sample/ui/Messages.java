@@ -15,7 +15,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS
 {
-	private static final String BUNDLE_NAME = "com.appcelerator.titanium.publish.testprovider.ui.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "com.appcelerator.titanium.publish.sample.ui.messages"; //$NON-NLS-1$
 	public static String RegisterTestTargetDialog_Password_error;
 	public static String RegisterTestTargetDialog_Password_Label;
 	public static String RegisterTestTargetDialog_URL_Label;

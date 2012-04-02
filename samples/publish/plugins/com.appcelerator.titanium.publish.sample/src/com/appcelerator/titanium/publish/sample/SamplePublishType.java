@@ -26,7 +26,7 @@ import com.aptana.core.util.StatusCollector;
  */
 public class SamplePublishType extends AbstractPublishType
 {
-	public static final String ID = "com.appcelerator.titanium.publish.testProvider.provider"; //$NON-NLS-1$
+	public static final String ID = "com.appcelerator.titanium.publish.sample.provider"; //$NON-NLS-1$
 	public static final String PUBLISH_PROPERTY_DESCRIPTION = "description"; //$NON-NLS-1$
 	public static final String PUBLISH_PROPERTY_PRIVATE = "private"; //$NON-NLS-1$
 
