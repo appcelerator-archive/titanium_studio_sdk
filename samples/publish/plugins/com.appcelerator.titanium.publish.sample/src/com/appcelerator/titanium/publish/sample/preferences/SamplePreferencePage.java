@@ -24,7 +24,7 @@ public class SamplePreferencePage extends AbstractPublishTargetPreferencePage
 {
 
 	private static final String[] COLUMN_HEADERS = { Messages.TestPreferencePage_URL_Columns, Messages.TestPreferencePage_Username_column, Messages.TestPreferencePage_Password_column };
-	private static final int[] COLUMN_CHAR_WIDTHS = { 20, 40, 40 };
+	private static final int[] COLUMN_CHAR_WIDTHS = { 20, 40, 10 };
 
 	/*
 	 * (non-Javadoc)
@@ -106,7 +106,7 @@ public class SamplePreferencePage extends AbstractPublishTargetPreferencePage
 					case 1:
 						return target.getUsername();
 					case 2:
-						return StringUtil.pad(StringUtil.EMPTY, target.getPassword().length(), '*');
+						return StringUtil.pad(StringUtil.EMPTY, 4, '*');
 				}
 			}
 			return super.getColumnText(element, columnIndex);

@@ -34,7 +34,6 @@ public class SampleRegisterTargetDialog extends RegisterPublishTargetDialog
 	private Text username;
 	private Text password;
 
-
 	public SampleRegisterTargetDialog()
 	{
 	}
@@ -42,14 +41,12 @@ public class SampleRegisterTargetDialog extends RegisterPublishTargetDialog
 	/*
 	 * (non-Javadoc)
 	 * @see
-	 * com.appcelerator.titanium.publish.ui.RegisterPublishTargetDialog#createDialogArea(org.eclipse.swt.widgets.Composite
-	 * )
+	 * com.appcelerator.titanium.publish.ui.RegisterPublishTargetDialog#createProviderContents(org.eclipse.swt.widgets
+	 * .Composite)
 	 */
 	@Override
-	protected Control createDialogArea(Composite parent)
+	protected void createProviderContents(Composite contents)
 	{
-		Composite contents = (Composite) super.createDialogArea(parent);
-
 		publishTargetName.setText(StringUtil.makeFormLabel(Messages.RegisterTestTargetDialog_URL_Label));
 
 		Label apiTokenLabel = new Label(contents, SWT.NONE);
@@ -86,8 +83,6 @@ public class SampleRegisterTargetDialog extends RegisterPublishTargetDialog
 
 		// Set the tab-list to traverse the text fields first.
 		contents.setTabList(new Control[] { publishTargetText, username, password, apiTokenLabel, passwordLabel });
-
-		return contents;
 	}
 
 	@Override

@@ -11,7 +11,10 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 
 import com.appcelerator.titanium.publish.AbstractPublishType;
 import com.appcelerator.titanium.publish.IPublishTarget;
@@ -66,7 +69,7 @@ public class SamplePublishType extends AbstractPublishType
 
 		return new Status(IStatus.OK, SampleProviderPlugin.PLUGIN_ID, MessageFormat.format(
 				Messages.TestPublishType_Test_publish_output, platform, target, publishTypeValueId, output, new File(
-						output).canRead() ? "found" : "missing", description, isPrivate));
+						output).canRead() ? Messages.SamplePublishType_publish_status_found_msg : Messages.SamplePublishType_publish_status_missing_msg, description, isPrivate));
 	}
 
 	/*
@@ -106,5 +109,19 @@ public class SamplePublishType extends AbstractPublishType
 			StatusCollector listener)
 	{
 		return new SampleSummaryComponent();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * com.appcelerator.titanium.publish.AbstractPublishType#createBrandingControls(org.eclipse.swt.widgets.Composite)
+	 */
+	@Override
+	public void createBrandingControls(Composite parent)
+	{
+		// Create a simple label
+		Label label = new Label(parent, SWT.NONE);
+		label.setLayoutData(GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.END).grab(true, true).create());
+		label.setText(Messages.SamplePublishType_branding_msg);
 	}
 }

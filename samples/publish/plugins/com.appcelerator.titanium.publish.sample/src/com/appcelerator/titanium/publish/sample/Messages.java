@@ -14,6 +14,9 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS
 {
 	private static final String BUNDLE_NAME = "com.appcelerator.titanium.publish.sample.messages"; //$NON-NLS-1$
+	public static String SamplePublishType_branding_msg;
+	public static String SamplePublishType_publish_status_found_msg;
+	public static String SamplePublishType_publish_status_missing_msg;
 	public static String TestPublishType_Test_publish_output;
 	static
 	{
