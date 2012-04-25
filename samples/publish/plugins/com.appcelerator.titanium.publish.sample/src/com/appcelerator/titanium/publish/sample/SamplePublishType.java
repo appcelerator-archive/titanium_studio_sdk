@@ -69,7 +69,8 @@ public class SamplePublishType extends AbstractPublishType
 
 		return new Status(IStatus.OK, SampleProviderPlugin.PLUGIN_ID, MessageFormat.format(
 				Messages.TestPublishType_Test_publish_output, platform, target, publishTypeValueId, output, new File(
-						output).canRead() ? Messages.SamplePublishType_publish_status_found_msg : Messages.SamplePublishType_publish_status_missing_msg, description, isPrivate));
+						output).canRead() ? Messages.SamplePublishType_publish_status_found_msg
+						: Messages.SamplePublishType_publish_status_missing_msg, description, isPrivate));
 	}
 
 	/*
@@ -121,7 +122,7 @@ public class SamplePublishType extends AbstractPublishType
 	{
 		// Create a simple label
 		Label label = new Label(parent, SWT.NONE);
-		label.setLayoutData(GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.END).grab(true, true).create());
+		label.setLayoutData(GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.END).span(2, 1).create());
 		label.setText(Messages.SamplePublishType_branding_msg);
 	}
 }

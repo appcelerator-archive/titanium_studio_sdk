@@ -24,7 +24,7 @@ public class SamplePreferencePage extends AbstractPublishTargetPreferencePage
 {
 
 	private static final String[] COLUMN_HEADERS = { Messages.TestPreferencePage_URL_Columns, Messages.TestPreferencePage_Username_column, Messages.TestPreferencePage_Password_column };
-	private static final int[] COLUMN_CHAR_WIDTHS = { 20, 40, 10 };
+	private static final int[] COLUMN_CHAR_WIDTHS = { 40, 20, 10 };
 
 	/*
 	 * (non-Javadoc)
