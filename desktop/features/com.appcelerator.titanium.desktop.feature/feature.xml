@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.appcelerator.titanium.desktop.feature"
+      label="%featureName"
+      version="2.0.0.qualifier"
+      provider-name="%providerName">
+
+   <description url="http://www.appcelerator.com">
+      %description
+   </description>
+
+   <copyright url="%copyrightURL">
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="com.aptana.ui"/>
+      <import plugin="com.aptana.projects"/>
+      <import plugin="com.appcelerator.titanium.core"/>
+      <import plugin="com.appcelerator.titanium.usage"/>
+      <import plugin="org.eclipse.core.expressions"/>
+      <import plugin="org.eclipse.core.filesystem"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="com.aptana.jetty.util.epl"/>
+      <import plugin="com.aptana.core" version="3.0.4" match="greaterOrEqual"/>
+      <import plugin="com.aptana.scripting"/>
+      <import plugin="com.appcelerator.titanium.ui"/>
+      <import plugin="com.aptana.buildpath.core"/>
+      <import plugin="com.aptana.samples"/>
+      <import plugin="com.aptana.editor.common"/>
+      <import plugin="org.eclipse.help"/>
+   </requires>
+
+   <plugin
+         id="com.appcelerator.titanium.desktop"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

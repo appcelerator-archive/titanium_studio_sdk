@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: com.appcelerator.titanium.desktop.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Appcelerator
+Fragment-Host: com.appcelerator.titanium.desktop
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: com.appcelerator.titanium.desktop.tests
+Require-Bundle: org.junit,
+ com.aptana.testing.utils
