@@ -70,19 +70,19 @@
          ================================= -->
 	<target name="clean" depends="generate.build.properties" description="Clean up temp and build files">
 		<delete failonerror="false">
-			<fileset dir="${buildDirectory}" defaultexcludes="true">
+			<fileset dir="${base}" defaultexcludes="true">
 				<include name="assemble.*" />
 				<include name="finalFeaturesVersions.*" />
 				<include name="finalPluginsVersions.*" />
 				<include name="package.*" />
 			</fileset>
 		</delete>
-		<delete dir="${buildDirectory}/${buildLabel}" failonerror="false" />
+		<delete dir="${base}/${buildLabel}" failonerror="false" />
 		<java jar="${baseLocation}/plugins/${launcher.plugin}.jar" fork="true" failonerror="false">
 			<arg line="-application org.eclipse.ant.core.antRunner -buildfile ${baseLocation}/plugins/${builder.plugin}/scripts/build.xml -Dbuilder=${basedir} -nosplash clean" />
 		</java>
 		<delete dir="${baseLocation}" />
-		<delete dir="${buildDirectory}/features/org.eclipse.pde.build.container.feature" failonerror="false" />
+		<delete dir="${base}/features/org.eclipse.pde.build.container.feature" failonerror="false" />
 	</target>
 
 	<!-- - - - - - - - - - - - - - - - - - 
@@ -107,7 +107,7 @@
          - - - - - - - - - - - - - - - - - -->
 	<target name="wipe.plugins" unless="dont.wipe.plugins">
 		<delete verbose="false">
-			<fileset dir="${buildDirectory}">
+			<fileset dir="${base}">
 				<include name="plugins/**/*" />
 				<exclude name="plugins/com.appcelerator.titanium.desktop/**/*" />
 				<include name="features**/*" />
@@ -144,7 +144,7 @@
 		        build.properties with qualifier for just that plugin/feature! -->
 		<for param="file">
 			<path>
-				<dirset dir="${buildDirectory}" defaultexcludes="true">
+				<dirset dir="${base}" defaultexcludes="true">
 					<include name="plugins/*" />
 					<include name="features/*" />
 					<exclude name="${topLevelElementType}s/${topLevelElementId}" />

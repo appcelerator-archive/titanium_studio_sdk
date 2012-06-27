@@ -31,10 +31,10 @@
 		<delete dir="${deploy.dir}" failonerror="false" />
 		<mkdir dir="${deploy.dir}" />
 		<!-- grab final version -->
-		<property file="${buildDirectory}/finalFeaturesVersions.properties" />
+		<property file="${base}/finalFeaturesVersions.properties" />
 		<propertycopy name="finalVersion" from="${topLevelElementId}" />
 		<!-- copy over result zipfile -->
-		<move file="${buildDirectory}/${buildType}.${build.revision}/${topLevelElementId}-${build.revision}-group.group.group.zip" tofile="${deploy.dir}/${topLevelElementId}-${finalVersion}.zip" />
+		<move file="${base}/${buildType}.${build.revision}/${topLevelElementId}-${build.revision}-group.group.group.zip" tofile="${deploy.dir}/${topLevelElementId}-${finalVersion}.zip" />
 		<!-- Create a version.txt file containing the final version string -->
 		<echo message="${finalVersion}" file="${deploy.dir}/version.txt" />
 		<!-- Extract zipped p2 repo too -->
