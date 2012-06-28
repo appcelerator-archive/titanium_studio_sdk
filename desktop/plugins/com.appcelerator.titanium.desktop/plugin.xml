@@ -239,4 +239,12 @@
             id="desktop">
       </type>
    </extension>
+   <extension
+         point="com.aptana.scripting.applicationBundlePaths">
+      <bundlePath
+            id="titanium.desktop"
+            name="Titanium Studio Desktop Bundles"
+            path="bundles/">
+      </bundlePath>
+   </extension>
 </plugin>
