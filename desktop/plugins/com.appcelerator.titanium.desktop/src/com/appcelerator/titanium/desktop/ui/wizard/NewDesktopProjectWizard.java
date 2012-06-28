@@ -28,7 +28,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
-import com.aptana.jetty.util.epl.ajax.JSON;
 
 import com.appcelerator.titanium.core.ITiAppModel;
 import com.appcelerator.titanium.core.TiElementDefinition;
@@ -41,8 +40,9 @@ import com.appcelerator.titanium.ui.wizard.ImportResourcesOperation;
 import com.aptana.core.build.UnifiedBuilder;
 import com.aptana.core.projects.templates.TemplateType;
 import com.aptana.core.util.StringUtil;
+import com.aptana.jetty.util.epl.ajax.JSON;
 import com.aptana.projects.WebProjectNature;
-import com.aptana.projects.wizards.IWizardProjectCreationPage;
+import com.aptana.projects.internal.wizards.IWizardProjectCreationPage;
 
 /**
  * A desktop project creation wizard.
