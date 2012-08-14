@@ -4,6 +4,6 @@ Titanium Desktop support:
 
 Titanium Studio no longer ships by default with support for running or building desktop projects. However, this support has been open-sourced and is available for interested parties to use or extend.
 
-Source code is available under the /desktop folder. Built versions of the plugin are available at hhttp://preview.appcelerator.com
+Source code is available under the /desktop folder. Built versions of the plugin are available at http://preview.appcelerator.com
 
 See LICENSE.txt for more information about applicable licenses for any code contained within this repository.
