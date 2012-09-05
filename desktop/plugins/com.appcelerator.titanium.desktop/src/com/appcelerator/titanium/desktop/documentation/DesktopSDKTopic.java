@@ -20,7 +20,7 @@ import org.eclipse.help.ITopic;
 import org.eclipse.help.IUAElement;
 
 /**
- * Link for a currently installed Titanium Mobile SDK
+ * Link for a currently installed Titanium Desktop SDK
  */
 public class DesktopSDKTopic implements ITopic
 {

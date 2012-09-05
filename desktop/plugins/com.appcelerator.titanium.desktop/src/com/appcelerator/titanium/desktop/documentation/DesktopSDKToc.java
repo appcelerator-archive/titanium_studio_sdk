@@ -30,9 +30,10 @@ import com.appcelerator.titanium.desktop.DesktopPlugin;
 import com.appcelerator.titanium.desktop.TitaniumDesktopSDKLocator;
 import com.aptana.core.logging.IdeLog;
 import com.aptana.core.util.StringUtil;
+import com.aptana.core.util.VersionUtil;
 
 /**
- * Class to automatically parse the currently installed Titanium Mobile SDKs and crate a link to the docs for each
+ * Class to automatically parse the currently installed Titanium Desktop SDKs and crate a link to the docs for each
  */
 public class DesktopSDKToc implements IToc
 {
@@ -68,7 +69,7 @@ public class DesktopSDKToc implements IToc
 		{
 			try
 			{
-				Version v = Version.parseVersion(sdkEntity.getVersion());
+				Version v = VersionUtil.parseVersion(sdkEntity.getVersion());
 				if (StringUtil.EMPTY.equals(v.getQualifier()) || Integer.parseInt(v.getQualifier()) >= 0)
 				{
 					// version is really 1.1.0 (for example), but needs to be 1.1 for URLs

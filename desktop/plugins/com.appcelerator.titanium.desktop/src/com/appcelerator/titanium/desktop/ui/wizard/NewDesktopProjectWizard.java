@@ -31,6 +31,7 @@ import org.eclipse.ui.IWorkbench;
 import com.aptana.jetty.util.epl.ajax.JSON;
 
 import com.appcelerator.titanium.core.ITiAppModel;
+import com.appcelerator.titanium.core.ProjectData;
 import com.appcelerator.titanium.core.TiElementDefinition;
 import com.appcelerator.titanium.core.TitaniumConstants;
 import com.appcelerator.titanium.core.TitaniumProjectBuilder;
