@@ -30,6 +30,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
 
 import com.appcelerator.titanium.core.ITiAppModel;
+import com.appcelerator.titanium.core.ProjectData;
 import com.appcelerator.titanium.core.TiElementDefinition;
 import com.appcelerator.titanium.core.TitaniumConstants;
 import com.appcelerator.titanium.core.TitaniumProjectBuilder;
