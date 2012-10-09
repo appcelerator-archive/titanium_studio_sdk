@@ -43,7 +43,7 @@ import com.aptana.core.projects.templates.TemplateType;
 import com.aptana.core.util.StringUtil;
 import com.aptana.jetty.util.epl.ajax.JSON;
 import com.aptana.projects.WebProjectNature;
-import com.aptana.projects.internal.wizards.IWizardProjectCreationPage;
+import com.aptana.projects.wizards.IWizardProjectCreationPage;
 
 /**
  * A desktop project creation wizard.
