@@ -67,18 +67,19 @@ public class NewDesktopProjectCreationPage extends BasicTitaniumProjectCreationP
 		super.createControl(parent);
 		Composite group = createCommonControls(parent);
 		// Loads the SDK versions
-		sdkViewer.setInput(TitaniumDesktopSDKLocator.getAvailable());
+		sdkViewer.setInput(TitaniumDesktopSDKLocator.getInstance().getAvailable());
 		SDKEntity selection = null;
 		// Load the saved setting for the Titanium Desktop SDK and set it as the selected one (in case we still have it
 		// available in the combo)
 		IDialogSettings dialogSettings = getDialogSettings();
 		if (dialogSettings != null)
 		{
-			selection = TitaniumDesktopSDKLocator.findVersion(String.valueOf(dialogSettings.get(TITANIUM_SDK_SETTING)));
+			selection = TitaniumDesktopSDKLocator.getInstance().findVersion(
+					String.valueOf(dialogSettings.get(TITANIUM_SDK_SETTING)));
 		}
 		if (selection == null)
 		{
-			selection = TitaniumDesktopSDKLocator.getLatestVersion();
+			selection = TitaniumDesktopSDKLocator.getInstance().getLatestVersion();
 		}
 		if (selection != null)
 		{
@@ -107,7 +108,7 @@ public class NewDesktopProjectCreationPage extends BasicTitaniumProjectCreationP
 
 	protected boolean innerValidate()
 	{
-		if (TitaniumDesktopSDKLocator.getLatestVersion() == null)
+		if (TitaniumDesktopSDKLocator.getInstance().getLatestVersion() == null)
 		{
 			setErrorMessage(Messages.NewDesktopProjectCreationPage_sdk_not_found);
 			return false;

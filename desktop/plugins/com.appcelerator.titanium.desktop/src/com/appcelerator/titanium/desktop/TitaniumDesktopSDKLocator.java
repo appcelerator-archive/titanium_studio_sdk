@@ -32,12 +32,10 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 
-import com.appcelerator.titanium.core.SDKEntity;
 import com.appcelerator.titanium.core.SDKLocator;
 import com.appcelerator.titanium.core.TitaniumCorePlugin;
 import com.appcelerator.titanium.core.preferences.ITitaniumCorePreferencesConstants;
 import com.appcelerator.titanium.core.tiapp.TiManifestModel.MODULE;
-import com.aptana.core.logging.IdeLog;
 import com.aptana.core.util.CollectionsUtil;
 import com.aptana.core.util.EclipseUtil;
 import com.aptana.core.util.StringUtil;
@@ -53,26 +51,30 @@ public final class TitaniumDesktopSDKLocator extends SDKLocator
 
 	public TitaniumDesktopSDKLocator()
 	{
-		this.watchLocation = true;
+		this(getPreferencePath(), true);
 	}
 
 	public TitaniumDesktopSDKLocator(IPath sdkRoot, boolean watchLocation)
 	{
+		super(sdkRoot);
 		this.watchLocation = watchLocation;
-		initialized = true;
-		initialize(sdkRoot);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.appcelerator.titanium.core.SDKLocator#initialize()
-	 */
-	@Override
-	protected void initialize()
+	private static IPath getPreferencePath()
 	{
-		initialize(Path.fromOSString(Platform.getPreferencesService().getString(TitaniumCorePlugin.PLUGIN_ID,
+		return Path.fromOSString(Platform.getPreferencesService().getString(TitaniumCorePlugin.PLUGIN_ID,
 				ITitaniumCorePreferencesConstants.TITANIUM_SDK_PATH, StringUtil.EMPTY,
-				new IScopeContext[] { EclipseUtil.instanceScope(), EclipseUtil.defaultScope() })));
+				new IScopeContext[] { EclipseUtil.instanceScope(), EclipseUtil.defaultScope() }));
+	}
+
+	/**
+	 * @deprecated
+	 * @return
+	 */
+	public static TitaniumDesktopSDKLocator getInstance()
+	{
+		return (TitaniumDesktopSDKLocator) TitaniumCorePlugin.getDefault().getSDKManager()
+				.getInstance(TitaniumDesktopSDKLocator.class);
 	}
 
 	/**
@@ -203,83 +205,18 @@ public final class TitaniumDesktopSDKLocator extends SDKLocator
 		modules.add(moduleName);
 	}
 
-	private static TitaniumDesktopSDKLocator getInstance()
-	{
-		return (TitaniumDesktopSDKLocator) TitaniumCorePlugin.getDefault().getSDKManager()
-				.getInstance(TitaniumDesktopSDKLocator.class);
-	}
-
-	/**
-	 * Returns list of available SDKs
-	 * 
-	 * @return
-	 */
-	public static List<SDKEntity> getAvailable()
-	{
-		return getInstance().getAvailableInternal();
-	}
-
-	/**
-	 * Returns list of available SDKs in the given locator.
-	 * 
-	 * @return The available SDKEntities in the given SDK locator.
-	 */
-	public static List<SDKEntity> getAvailable(TitaniumDesktopSDKLocator locator)
-	{
-		if (locator == null)
-		{
-			IdeLog.logError(DesktopPlugin.getDefault(), "Locator was null"); //$NON-NLS-1$
-			return Collections.emptyList();
-		}
-		return locator.getAvailableInternal();
-	}
-
-	/**
-	 * Return the specific SDK version
-	 * 
-	 * @param version
-	 * @return
-	 */
-	public static SDKEntity findVersion(String version)
-	{
-		return getInstance().findVersionInternal(version);
-	}
-
-	/**
-	 * Return the latest SDK version
-	 * 
-	 * @return
-	 */
-	public static SDKEntity getLatestVersion()
-	{
-		return getInstance().getLatestVersionInternal();
-	}
-
-	/**
-	 * Returns list of versions in the specified range
-	 * 
-	 * @param minVersion
-	 * @param maxVersion
-	 * @return
-	 */
-	public static SDKEntity[] findVersionsInRange(String minVersion, String maxVersion)
-	{
-		return getInstance().findVersionsInRangeInternal(minVersion, maxVersion);
-	}
-
 	/**
 	 * Returns <b>all</b> the Titanium Desktop Modules that were detected under the 'modules' directory of the SDK.<br>
 	 * The returned map holds a Version-to-Modules list.
 	 * 
 	 * @return A read-only modules map.
 	 */
-	public static Map<String, List<String>> getAvailableModules()
+	public Map<String, List<String>> getAvailableModules()
 	{
-		Map<String, List<String>> modules = getInstance().versionsToModules;
-		if (modules == null)
+		if (versionsToModules == null)
 		{
 			return Collections.emptyMap();
 		}
-		return Collections.unmodifiableMap(modules);
+		return Collections.unmodifiableMap(versionsToModules);
 	}
 }
