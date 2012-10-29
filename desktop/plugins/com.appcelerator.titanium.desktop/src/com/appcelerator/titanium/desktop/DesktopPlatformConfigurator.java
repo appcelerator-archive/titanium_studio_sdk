@@ -36,8 +36,6 @@ import com.aptana.core.util.StringUtil;
 public class DesktopPlatformConfigurator implements IPlatformTypeConfigurator
 {
 
-	private TitaniumDesktopSDKLocator sdkLocator;
-
 	public String getProjectNatureId()
 	{
 		return DesktopProjectNature.ID;
@@ -45,21 +43,17 @@ public class DesktopPlatformConfigurator implements IPlatformTypeConfigurator
 
 	public List<SDKEntity> getAvailableSDKs()
 	{
-		return TitaniumDesktopSDKLocator.getAvailable();
+		return getSDKLocator().getAvailable();
 	}
 
 	public SDKLocator getSDKLocator()
 	{
-		if (sdkLocator == null)
-		{
-			sdkLocator = new TitaniumDesktopSDKLocator();
-		}
-		return sdkLocator;
+		return TitaniumDesktopSDKLocator.getInstance();
 	}
 
 	public SDKEntity getSDK(String version)
 	{
-		return TitaniumDesktopSDKLocator.findVersion(version);
+		return getSDKLocator().findVersion(version);
 	}
 
 	public SDKEntity getProjectSDK(IProject project) throws CoreException
@@ -71,15 +65,15 @@ public class DesktopPlatformConfigurator implements IPlatformTypeConfigurator
 			throws CoreException
 	{
 		// In case it's a desktop project, just call the TiAppReconciler to verify that we have the required elements.
-		ITiAppModel reconciledModel = new TiAppReconciler(project, TitaniumDesktopSDKLocator.getAvailable(),
-				TitaniumDesktopSDKLocator.getLatestVersion()).reconcile(monitor);
+		ITiAppModel reconciledModel = new TiAppReconciler(project, getSDKLocator().getAvailable(), getSDKLocator()
+				.getLatestVersion()).reconcile(monitor);
 		// We might have to update the manifest here after the reconcile, as it may change due to SDK compatibilities.
 		// We do it here, and not in the TiAppReconciler, for dependency reasons (Desktop-specific code that cannot be
 		// accessed from the core plugin).
 		String sdkVersion = TiAppModelUtil.getSDKVersion(reconciledModel);
 		if (!StringUtil.isEmpty(sdkVersion))
 		{
-			DesktopSDKEntity sdkEntity = (DesktopSDKEntity) TitaniumDesktopSDKLocator.findVersion(sdkVersion);
+			DesktopSDKEntity sdkEntity = (DesktopSDKEntity) getSDKLocator().findVersion(sdkVersion);
 			if (sdkEntity != null)
 			{
 				TitaniumDesktopManifestUtil.updateSDKVersion(tiProject.getTiManifest(), sdkVersion, sdkEntity);

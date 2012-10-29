@@ -100,11 +100,11 @@ public final class TitaniumDesktopSDKTools
 		SDKEntity sdkEntity = null;
 		if (sdk != null)
 		{
-			sdkEntity = TitaniumDesktopSDKLocator.findVersion(sdk);
+			sdkEntity = TitaniumDesktopSDKLocator.getInstance().findVersion(sdk);
 		}
 		if (sdkEntity == null)
 		{
-			sdkEntity = TitaniumDesktopSDKLocator.getLatestVersion();
+			sdkEntity = TitaniumDesktopSDKLocator.getInstance().getLatestVersion();
 		}
 		if (sdkEntity == null)
 		{
