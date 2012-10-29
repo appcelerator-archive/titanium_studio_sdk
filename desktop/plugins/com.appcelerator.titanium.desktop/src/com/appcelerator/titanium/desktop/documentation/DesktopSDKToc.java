@@ -64,7 +64,7 @@ public class DesktopSDKToc implements IToc
 	public ITopic[] getTopics()
 	{
 		List<ITopic> al = new ArrayList<ITopic>();
-		List<SDKEntity> sdks = TitaniumDesktopSDKLocator.getAvailable();
+		List<SDKEntity> sdks = TitaniumDesktopSDKLocator.getInstance().getAvailable();
 		for (SDKEntity sdkEntity : sdks)
 		{
 			try

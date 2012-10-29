@@ -25,7 +25,7 @@ public class DesktopDiagnosticLog implements IDiagnosticLog
 	{
 		StringBuilder buf = new StringBuilder();
 
-		for (SDKEntity sdkEntity : TitaniumDesktopSDKLocator.getAvailable())
+		for (SDKEntity sdkEntity : TitaniumDesktopSDKLocator.getInstance().getAvailable())
 		{
 			buf.append(Messages.DesktopDiagnosticLog_sdk_version_label).append(sdkEntity.getVersion());
 			buf.append("\n"); //$NON-NLS-1$
