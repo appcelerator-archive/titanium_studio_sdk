@@ -20,9 +20,9 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
+import com.aptana.core.IUserAgent;
 import com.aptana.core.util.ResourceUtil;
 import com.aptana.editor.common.contentassist.UserAgentManager;
-import com.aptana.editor.common.contentassist.UserAgentManager.UserAgent;
 
 /**
  * UserAgentManagerTests
@@ -76,7 +76,7 @@ public class UserAgentManagerTests extends TestCase
 
 	public void assertIDs(String natureID, String... expectedUserAgentIDs)
 	{
-		UserAgent[] userAgents = manager.getActiveUserAgents(natureID);
+		IUserAgent[] userAgents = manager.getActiveUserAgents(natureID);
 
 		assertNotNull(userAgents);
 
@@ -89,9 +89,9 @@ public class UserAgentManagerTests extends TestCase
 
 		// create actual set
 		Set<String> actual = new HashSet<String>();
-		for (UserAgent userAgent : userAgents)
+		for (IUserAgent userAgent : userAgents)
 		{
-			actual.add(userAgent.ID);
+			actual.add(userAgent.getID());
 		}
 
 		assertEquals(expected, actual);
