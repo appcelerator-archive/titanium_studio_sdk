@@ -45,7 +45,12 @@ public class DesktopPlugin extends Plugin
 	{
 		super.start(context);
 		plugin = this;
-		TitaniumCorePlugin.getDefault().getSDKManager().addSDKLocator(TitaniumDesktopSDKLocator.class, TitaniumCorePlugin.PLUGIN_ID, ITitaniumCorePreferencesConstants.TITANIUM_SDK_PATH);
+
+		TitaniumCorePlugin
+				.getDefault()
+				.getSDKManager()
+				.registerPrefKey(TitaniumDesktopSDKLocator.class, TitaniumCorePlugin.PLUGIN_ID,
+						ITitaniumCorePreferencesConstants.TITANIUM_SDK_PATH);
 	}
 
 	/*
