@@ -186,7 +186,7 @@
       </image>
    </extension>
    <extension
-         point="com.aptana.ui.diagnostic">
+         point="com.aptana.core.diagnostic">
       <diagnosticLog
             class="com.appcelerator.titanium.desktop.DesktopDiagnosticLog">
       </diagnosticLog>
