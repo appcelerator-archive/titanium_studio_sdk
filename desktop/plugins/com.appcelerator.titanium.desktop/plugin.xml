@@ -186,7 +186,7 @@
       </image>
    </extension>
    <extension
-         point="com.aptana.ui.diagnostic">
+         point="com.aptana.core.diagnostic">
       <diagnosticLog
             class="com.appcelerator.titanium.desktop.DesktopDiagnosticLog">
       </diagnosticLog>
@@ -217,7 +217,7 @@
       </category>
    </extension>
    <extension
-         point="com.aptana.editor.common.userAgent">
+         point="com.aptana.core.userAgent">
       <default-user-agents
             name="Default User Agents for Titanium Desktop"
             nature-id="com.appcelerator.titanium.desktop.nature">
