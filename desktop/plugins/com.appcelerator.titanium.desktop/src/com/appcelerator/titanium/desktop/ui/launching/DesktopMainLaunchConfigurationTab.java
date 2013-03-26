@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 Appcelerator, Inc.
+ * Copyright 2011-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,8 @@ import com.appcelerator.titanium.ui.launching.BaseTitaniumLaunchConfigurationTab
 public class DesktopMainLaunchConfigurationTab extends BaseTitaniumLaunchConfigurationTab
 {
 
+	private static final String TYPE_ID = "com.appcelerator.titanium.desktop.launchConfigurationType"; //$NON-NLS-1$
+
 	@Override
 	protected Group createPlatformControl(Composite composite)
 	{
@@ -43,5 +45,11 @@ public class DesktopMainLaunchConfigurationTab extends BaseTitaniumLaunchConfigu
 	protected boolean allowCleanBuild()
 	{
 		return false;
+	}
+
+	@Override
+	protected String getLaunchConfigurationTypeId()
+	{
+		return TYPE_ID;
 	}
 }
