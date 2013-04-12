@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 Appcelerator, Inc.
+ * Copyright 2011-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import org.eclipse.help.ITopic;
 import org.eclipse.help.IUAElement;
 import org.osgi.framework.Version;
 
-import com.appcelerator.titanium.core.SDKEntity;
+import com.appcelerator.titanium.core.mobile.SDKEntity;
 import com.appcelerator.titanium.desktop.DesktopPlugin;
 import com.appcelerator.titanium.desktop.TitaniumDesktopSDKLocator;
 import com.aptana.core.logging.IdeLog;

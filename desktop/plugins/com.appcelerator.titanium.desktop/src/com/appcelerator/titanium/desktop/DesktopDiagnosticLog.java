@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 Appcelerator, Inc.
+ * Copyright 2011-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 package com.appcelerator.titanium.desktop;
 
-import com.appcelerator.titanium.core.SDKEntity;
+import com.appcelerator.titanium.core.mobile.SDKEntity;
 import com.aptana.core.diagnostic.IDiagnosticLog;
 
 public class DesktopDiagnosticLog implements IDiagnosticLog

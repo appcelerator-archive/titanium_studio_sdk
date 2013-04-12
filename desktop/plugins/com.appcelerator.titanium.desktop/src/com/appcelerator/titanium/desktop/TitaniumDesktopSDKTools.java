@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 Appcelerator, Inc.
+ * Copyright 2011-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,8 +25,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 
-import com.appcelerator.titanium.core.SDKEntity;
+import com.appcelerator.titanium.core.TitaniumCorePlugin;
 import com.appcelerator.titanium.core.TitaniumProject;
+import com.appcelerator.titanium.core.mobile.SDKEntity;
 import com.appcelerator.titanium.desktop.preferences.IDesktopPreferenceConstants;
 import com.aptana.core.logging.IdeLog;
 import com.aptana.core.util.EclipseUtil;
@@ -81,7 +82,7 @@ public final class TitaniumDesktopSDKTools
 	{
 		// We start by checking if we can grab the SDK version from the tiapp.xml.
 		// If we can't, we fall back to the preferences (backward compatability)
-		String sdk = (project != null) ? (new TitaniumProject(project)).getSDKVersion() : null;
+		String sdk = (project != null) ? getTitaniumProject(project).getSDKVersion() : null;
 		if (StringUtil.isEmpty(sdk))
 		{
 			IScopeContext[] lookupContexts;
@@ -142,5 +143,10 @@ public final class TitaniumDesktopSDKTools
 			}
 		}
 		return false;
+	}
+
+	private static TitaniumProject getTitaniumProject(IProject project)
+	{
+		return TitaniumCorePlugin.getDefault().getTitaniumProjectFactory().create(project);
 	}
 }

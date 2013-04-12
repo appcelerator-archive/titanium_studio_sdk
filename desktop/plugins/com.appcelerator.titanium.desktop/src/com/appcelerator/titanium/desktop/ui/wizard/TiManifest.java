@@ -77,7 +77,6 @@ class TiManifest
 	static final String VISIBILITY = "visibility"; //$NON-NLS-1$
 
 	private IProject project;
-	private TitaniumProject fTiProject;
 
 	TiManifest(IProject project)
 	{
@@ -202,12 +201,8 @@ class TiManifest
 		return getTitaniumProject().getGUID();
 	}
 
-	protected synchronized TitaniumProject getTitaniumProject()
+	protected TitaniumProject getTitaniumProject()
 	{
-		if (fTiProject == null)
-		{
-			fTiProject = new TitaniumProject(project);
-		}
-		return fTiProject;
+		return TitaniumCorePlugin.getDefault().getTitaniumProjectFactory().create(project);
 	}
 }

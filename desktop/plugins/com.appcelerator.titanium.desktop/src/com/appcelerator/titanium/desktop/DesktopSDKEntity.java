@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 Appcelerator, Inc.
+ * Copyright 2011-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IPath;
 
-import com.appcelerator.titanium.core.SDKEntity;
+import com.appcelerator.titanium.core.mobile.SDKEntity;
 import com.appcelerator.titanium.core.tiapp.TiManifestModel.MODULE;
 
 /**

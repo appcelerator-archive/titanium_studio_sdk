@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 Appcelerator, Inc.
+ * Copyright 2011-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,8 +32,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 
-import com.appcelerator.titanium.core.SDKLocator;
 import com.appcelerator.titanium.core.TitaniumCorePlugin;
+import com.appcelerator.titanium.core.mobile.SDKLocator;
 import com.appcelerator.titanium.core.preferences.ITitaniumCorePreferencesConstants;
 import com.appcelerator.titanium.core.tiapp.TiManifestModel.MODULE;
 import com.aptana.core.util.CollectionsUtil;
