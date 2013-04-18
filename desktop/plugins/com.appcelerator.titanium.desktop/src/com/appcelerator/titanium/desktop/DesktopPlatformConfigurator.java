@@ -80,12 +80,12 @@ public class DesktopPlatformConfigurator implements IPlatformTypeConfigurator
 		}
 	}
 
-	public void onTiAppSDKSave(String sdkVersion, TiManifestModel manifestModel, Set<MODULE> mdoules)
+	public void onTiAppSDKSave(String sdkVersion, TiManifestModel manifestModel, Set modules)
 	{
 		if (manifestModel != null)
 		{
 			DesktopSDKEntity sdkEntity = (DesktopSDKEntity) getSDK(sdkVersion);
-			TitaniumDesktopManifestUtil.updateSDKVersion(manifestModel, sdkVersion, sdkEntity, mdoules);
+			TitaniumDesktopManifestUtil.updateSDKVersion(manifestModel, sdkVersion, sdkEntity, modules);
 		}
 	}
 }

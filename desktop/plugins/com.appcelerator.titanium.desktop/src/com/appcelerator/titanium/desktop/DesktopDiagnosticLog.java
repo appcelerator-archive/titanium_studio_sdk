@@ -15,7 +15,6 @@
  */
 package com.appcelerator.titanium.desktop;
 
-import com.appcelerator.titanium.core.mobile.SDKEntity;
 import com.aptana.core.diagnostic.IDiagnosticLog;
 
 public class DesktopDiagnosticLog implements IDiagnosticLog
@@ -25,13 +24,17 @@ public class DesktopDiagnosticLog implements IDiagnosticLog
 	{
 		StringBuilder buf = new StringBuilder();
 
-		for (SDKEntity sdkEntity : TitaniumDesktopSDKLocator.getInstance().getAvailable())
+		for (Object sdkEntity : TitaniumDesktopSDKLocator.getInstance().getAvailable())
 		{
-			buf.append(Messages.DesktopDiagnosticLog_sdk_version_label).append(sdkEntity.getVersion());
-			buf.append("\n"); //$NON-NLS-1$
+			if (sdkEntity instanceof DesktopSDKEntity)
+			{
+				DesktopSDKEntity entity = (DesktopSDKEntity) sdkEntity;
+				buf.append(Messages.DesktopDiagnosticLog_sdk_version_label).append(entity.getVersion());
+				buf.append("\n"); //$NON-NLS-1$
 
-			buf.append(Messages.DesktopDiagnosticLog_sdk_location_label).append(sdkEntity.getPath().toOSString());
-			buf.append("\n\n"); //$NON-NLS-1$
+				buf.append(Messages.DesktopDiagnosticLog_sdk_location_label).append(entity.getPath().toOSString());
+				buf.append("\n\n"); //$NON-NLS-1$
+			}
 		}
 
 		return buf.toString();
