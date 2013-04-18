@@ -97,4 +97,8 @@ public class SampleProjectHandler implements ISampleProjectHandler
 			}
 		}
 	}
+
+	public void projectCreated(IProject project, Object data)
+	{
+	}
 }
