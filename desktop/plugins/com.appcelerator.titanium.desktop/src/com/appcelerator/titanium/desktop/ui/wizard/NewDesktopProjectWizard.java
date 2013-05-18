@@ -30,7 +30,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
 
 import com.appcelerator.titanium.core.ITiAppModel;
-import com.appcelerator.titanium.core.ProjectData;
 import com.appcelerator.titanium.core.TiElementDefinition;
 import com.appcelerator.titanium.core.TitaniumConstants;
 import com.appcelerator.titanium.core.TitaniumProjectBuilder;
@@ -42,6 +41,7 @@ import com.aptana.core.build.UnifiedBuilder;
 import com.aptana.core.projects.templates.TemplateType;
 import com.aptana.core.util.StringUtil;
 import com.aptana.jetty.util.epl.ajax.JSON;
+import com.aptana.projects.ProjectData;
 import com.aptana.projects.WebProjectNature;
 import com.aptana.projects.wizards.IWizardProjectCreationPage;
 
