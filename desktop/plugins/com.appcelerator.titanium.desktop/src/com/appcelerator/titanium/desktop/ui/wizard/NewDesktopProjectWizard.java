@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 Appcelerator, Inc.
+ * Copyright 2011-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,10 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
 
-import com.appcelerator.titanium.core.ITiAppModel;
-import com.appcelerator.titanium.core.TiElementDefinition;
 import com.appcelerator.titanium.core.TitaniumConstants;
 import com.appcelerator.titanium.core.TitaniumProjectBuilder;
+import com.appcelerator.titanium.core.tiapp.ITiAppModel;
+import com.appcelerator.titanium.core.tiapp.TiElementDefinition;
 import com.appcelerator.titanium.desktop.DesktopPlugin;
 import com.appcelerator.titanium.desktop.DesktopProjectNature;
 import com.appcelerator.titanium.ui.wizard.BasicNewTitaniumProjectWizard;

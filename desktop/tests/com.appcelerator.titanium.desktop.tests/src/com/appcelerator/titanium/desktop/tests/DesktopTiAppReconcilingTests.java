@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 Appcelerator, Inc.
+ * Copyright 2011-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,13 +25,12 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 
-import com.appcelerator.titanium.core.ITiAppModel;
-import com.appcelerator.titanium.core.SDKEntity;
-import com.appcelerator.titanium.core.TiAppReconciler;
-import com.appcelerator.titanium.core.TiModelFactory;
-import com.appcelerator.titanium.core.tiapp.TiAppModelUtil;
+import com.appcelerator.titanium.core.mobile.SDKEntity;
+import com.appcelerator.titanium.core.tiapp.ITiAppModel;
+import com.appcelerator.titanium.core.tiapp.TiAppReconciler;
 import com.appcelerator.titanium.core.tiapp.TiManifestModel;
 import com.appcelerator.titanium.core.tiapp.TiManifestModel.MODULE;
+import com.appcelerator.titanium.core.tiapp.TiModelFactory;
 import com.appcelerator.titanium.desktop.DesktopSDKEntity;
 import com.aptana.core.util.ResourceUtil;
 import com.aptana.core.util.StringUtil;
@@ -87,13 +86,12 @@ public class DesktopTiAppReconcilingTests extends TestCase
 	 */
 	public void testSDKAdjustNotNeeded() throws Exception
 	{
-		String preReconcilingVersion = TiAppModelUtil.getSDKVersion(tiAppModel);
 		List<String> problems = TiAppReconciler.collectAndRepair(tiAppModel, manifestModel, mockupDesktopSDKs,
 				mockupDesktopSDKs.get(0));
 		assertFalse("Expected a 'non-dirty' TiApp model", tiAppModel.isDirty());
 		assertEquals("Expected 0 problems", 0, problems.size());
-		assertEquals("Wrong SDK version after reconciling", preReconcilingVersion,
-				TiAppModelUtil.getSDKVersion(tiAppModel));
+		assertEquals("Wrong SDK version after reconciling", mockupDesktopSDKs.get(0).getVersion(),
+				tiAppModel.getSDKVersion());
 	}
 
 	/**
@@ -105,14 +103,13 @@ public class DesktopTiAppReconcilingTests extends TestCase
 	{
 		String preReconcilingManifestSDK = manifestModel.getModuleValue(MODULE.RUNTIME);
 		// First, set the SDK entry to an empty string (simulates a missing entry)
-		TiAppModelUtil.setSDKVersion(tiAppModel, StringUtil.EMPTY);
-		assertEquals("Expected an empty SDK version", StringUtil.EMPTY, TiAppModelUtil.getSDKVersion(tiAppModel));
+		tiAppModel.setSDKVersion(StringUtil.EMPTY);
+		assertEquals("Expected an empty SDK version", StringUtil.EMPTY, tiAppModel.getSDKVersion());
 		// Collect the problems
 		List<String> problems = TiAppReconciler.collectAndRepair(tiAppModel, manifestModel, mockupDesktopSDKs,
 				mockupDesktopSDKs.get(0));
 		assertEquals("Expected 1 problems", 1, problems.size());
-		assertEquals("Wrong SDK version after reconciling", preReconcilingManifestSDK,
-				TiAppModelUtil.getSDKVersion(tiAppModel));
+		assertEquals("Wrong SDK version after reconciling", preReconcilingManifestSDK, tiAppModel.getSDKVersion());
 	}
 
 	public void testSDKAdjustToDefault() throws Exception
@@ -120,14 +117,14 @@ public class DesktopTiAppReconcilingTests extends TestCase
 		// Set a non-existing SDK in the manifest
 		manifestModel.setModule(MODULE.RUNTIME, "0.9.0");
 		// First, set the SDK entry to an empty string (simulates a missing entry)
-		TiAppModelUtil.setSDKVersion(tiAppModel, StringUtil.EMPTY);
-		assertEquals("Expected an empty SDK version", StringUtil.EMPTY, TiAppModelUtil.getSDKVersion(tiAppModel));
+		tiAppModel.setSDKVersion(StringUtil.EMPTY);
+		assertEquals("Expected an empty SDK version", StringUtil.EMPTY, tiAppModel.getSDKVersion());
 		// Collect the problems
 		List<String> problems = TiAppReconciler.collectAndRepair(tiAppModel, manifestModel, mockupDesktopSDKs,
 				mockupDesktopSDKs.get(0));
 		assertEquals("Expected 1 problems", 1, problems.size());
 		assertEquals("Wrong SDK version after reconciling", mockupDesktopSDKs.get(0).getVersion(),
-				TiAppModelUtil.getSDKVersion(tiAppModel));
+				tiAppModel.getSDKVersion());
 	}
 
 	public void testSDKAdjustToWrongVersion() throws Exception
@@ -142,7 +139,7 @@ public class DesktopTiAppReconcilingTests extends TestCase
 		catch (IllegalArgumentException e)
 		{
 			assertFalse("Expected a 'non-dirty' TiApp model", tiAppModel.isDirty());
-			assertEquals("Wrong SDK version after reconciling", "1.0.0", TiAppModelUtil.getSDKVersion(tiAppModel));
+			assertEquals("Wrong SDK version after reconciling", "1.0.0", tiAppModel.getSDKVersion());
 			return;
 		}
 		assertTrue("Expected an IllegalArgumentException", false);
@@ -176,5 +173,4 @@ public class DesktopTiAppReconcilingTests extends TestCase
 		}
 		return modules;
 	}
-
 }

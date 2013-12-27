@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 Appcelerator, Inc.
+ * Copyright 2011-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,16 +19,16 @@ import org.eclipse.help.AbstractTocProvider;
 import org.eclipse.help.IToc;
 import org.eclipse.help.ITocContribution;
 
-import com.appcelerator.titanium.core.SDKLocator;
-import com.appcelerator.titanium.core.SDKManager.SDKChangeListener;
 import com.appcelerator.titanium.core.documentation.SDKListenerProxy;
+import com.appcelerator.titanium.core.mobile.SDKLocator;
+import com.appcelerator.titanium.core.mobile.SDKManager;
 import com.appcelerator.titanium.desktop.DesktopPlugin;
 import com.appcelerator.titanium.desktop.TitaniumDesktopSDKLocator;
 
 /**
  * Creates a TOC entry for the currently installed Titanium Desktop SDKs
  */
-public class DesktopSDKTocProvider extends AbstractTocProvider implements SDKChangeListener
+public class DesktopSDKTocProvider extends AbstractTocProvider implements SDKManager.SDKChangeListener
 {
 	public static SDKListenerProxy proxy;
 

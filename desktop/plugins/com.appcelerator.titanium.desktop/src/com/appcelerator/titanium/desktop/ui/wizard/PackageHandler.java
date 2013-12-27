@@ -26,7 +26,7 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.PlatformUI;
 
 import com.appcelerator.titanium.core.TitaniumCorePlugin;
-import com.appcelerator.titanium.core.user.TitaniumUser;
+import com.appcelerator.titanium.core.user.ITitaniumUser;
 import com.aptana.ui.util.UIUtils;
 
 public class PackageHandler extends AbstractHandler
@@ -34,7 +34,7 @@ public class PackageHandler extends AbstractHandler
 
 	public Object execute(ExecutionEvent event) throws ExecutionException
 	{
-		TitaniumUser user = TitaniumCorePlugin.getDefault().getUserManager().getSignedInUser();
+		ITitaniumUser user = TitaniumCorePlugin.getDefault().getUserManager().getSignedInUser();
 		if (user == null)
 		{
 			// Force the login!
