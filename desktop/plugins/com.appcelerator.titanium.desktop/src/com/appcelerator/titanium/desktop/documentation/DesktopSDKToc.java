@@ -25,8 +25,8 @@ import org.eclipse.help.ITopic;
 import org.eclipse.help.IUAElement;
 import org.osgi.framework.Version;
 
-import com.appcelerator.titanium.core.mobile.SDKEntity;
 import com.appcelerator.titanium.desktop.DesktopPlugin;
+import com.appcelerator.titanium.desktop.DesktopSDKEntity;
 import com.appcelerator.titanium.desktop.TitaniumDesktopSDKLocator;
 import com.aptana.core.logging.IdeLog;
 import com.aptana.core.util.StringUtil;
@@ -64,8 +64,8 @@ public class DesktopSDKToc implements IToc
 	public ITopic[] getTopics()
 	{
 		List<ITopic> al = new ArrayList<ITopic>();
-		List<SDKEntity> sdks = TitaniumDesktopSDKLocator.getInstance().getAvailable();
-		for (SDKEntity sdkEntity : sdks)
+		List<DesktopSDKEntity> sdks = TitaniumDesktopSDKLocator.getInstance().getAvailable();
+		for (DesktopSDKEntity sdkEntity : sdks)
 		{
 			try
 			{
