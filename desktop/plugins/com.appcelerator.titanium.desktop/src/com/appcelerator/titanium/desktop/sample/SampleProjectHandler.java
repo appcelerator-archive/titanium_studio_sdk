@@ -24,6 +24,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 
 import com.appcelerator.titanium.core.TitaniumProjectBuilder;
 import com.appcelerator.titanium.desktop.DesktopPlugin;
@@ -83,7 +84,6 @@ public class SampleProjectHandler implements ISampleProjectHandler
 	 * @param project
 	 * @throws CoreException
 	 */
-	@SuppressWarnings("deprecation")
 	protected void markBuildFolderDerived(final IProject project) throws CoreException
 	{
 		IFolder buildFolder = project.getFolder("build"); //$NON-NLS-1$
@@ -92,8 +92,7 @@ public class SampleProjectHandler implements ISampleProjectHandler
 			// Mark build folder as derived if it isn't already.
 			if (!buildFolder.isDerived())
 			{
-				// TODO When 3.6 is our base, use the new method!
-				buildFolder.setDerived(true);
+				buildFolder.setDerived(true, new NullProgressMonitor());
 			}
 		}
 	}

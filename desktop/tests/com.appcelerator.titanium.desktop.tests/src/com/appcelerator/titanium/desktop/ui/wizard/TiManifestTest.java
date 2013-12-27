@@ -57,11 +57,12 @@ public class TiManifestTest extends TestCase
 		private final String version;
 		private final String publisher;
 		private final String description;
+		private IProject project;
 
 		private MockTitaniumProject(IProject project, String url, String appId, String appName, String guid,
 				String version, String publisher, String description)
 		{
-			super(project);
+			super(project.getLocation().toFile());
 			this.url = url;
 			this.appId = appId;
 			this.appName = appName;
@@ -69,6 +70,7 @@ public class TiManifestTest extends TestCase
 			this.version = version;
 			this.publisher = publisher;
 			this.description = description;
+			this.project = project;
 		}
 
 		@Override
@@ -111,6 +113,12 @@ public class TiManifestTest extends TestCase
 		public synchronized String getURL()
 		{
 			return url;
+		}
+
+		@Override
+		public synchronized IProject getProject()
+		{
+			return project;
 		}
 	}
 

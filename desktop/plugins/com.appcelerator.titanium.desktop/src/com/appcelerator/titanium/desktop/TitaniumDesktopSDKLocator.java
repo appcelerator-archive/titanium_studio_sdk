@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 Appcelerator, Inc.
+ * Copyright 2011-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,8 +32,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 
-import com.appcelerator.titanium.core.SDKLocator;
 import com.appcelerator.titanium.core.TitaniumCorePlugin;
+import com.appcelerator.titanium.core.mobile.SDKLocator;
 import com.appcelerator.titanium.core.preferences.ITitaniumCorePreferencesConstants;
 import com.appcelerator.titanium.core.tiapp.TiManifestModel.MODULE;
 import com.aptana.core.util.CollectionsUtil;
@@ -43,7 +43,7 @@ import com.aptana.core.util.StringUtil;
 /**
  * @author Max Stepanov
  */
-public final class TitaniumDesktopSDKLocator extends SDKLocator
+public final class TitaniumDesktopSDKLocator extends SDKLocator<DesktopSDKEntity>
 {
 
 	private Map<String, List<String>> versionsToModules;
@@ -77,62 +77,52 @@ public final class TitaniumDesktopSDKLocator extends SDKLocator
 				.getInstance(TitaniumDesktopSDKLocator.class);
 	}
 
-	/**
-	 * Initialize the SDK locator with a given SDK root path.
-	 * 
-	 * @param sdkRoot
-	 */
-	protected void initialize(IPath sdkRoot)
+	protected IStatus initialize()
 	{
-		initializationStatus = Status.OK_STATUS;
 		versionsToModules = null;
-		if (sdkRoot.isEmpty())
+		if (sdkPath.isEmpty())
 		{
-			initializationStatus = new Status(IStatus.WARNING, DesktopPlugin.PLUGIN_ID,
-					SDKLocator.CONFIGURATION_WARNING, Messages.TitaniumDesktopSDKLocator_sdkRootNotSpecified, null);
-			return;
+			return new Status(IStatus.WARNING, DesktopPlugin.PLUGIN_ID, SDKLocator.CONFIGURATION_WARNING,
+					Messages.TitaniumDesktopSDKLocator_sdkRootNotSpecified, null);
 		}
-		if (!sdkRoot.toFile().isDirectory())
+		if (!sdkPath.toFile().isDirectory())
 		{
-			initializationStatus = new Status(IStatus.WARNING, DesktopPlugin.PLUGIN_ID, SDKLocator.CONFIGURATION_ERROR,
+			return new Status(IStatus.WARNING, DesktopPlugin.PLUGIN_ID, SDKLocator.CONFIGURATION_ERROR,
 					MessageFormat.format(Messages.TitaniumDesktopSDKLocator_sdkRootPathNotDirectory,
-							sdkRoot.toOSString()), null);
-			return;
+							sdkPath.toOSString()), null);
 		}
 		IPath desktopSdkRoot;
 		IPath modulesRoot;
 		IPath runtimeRoot;
 		if (Platform.OS_MACOSX.equals(Platform.getOS()))
 		{
-			desktopSdkRoot = sdkRoot.append("sdk/osx"); //$NON-NLS-1$
-			modulesRoot = sdkRoot.append("modules/osx"); //$NON-NLS-1$
-			runtimeRoot = sdkRoot.append("runtime/osx"); //$NON-NLS-1$
+			desktopSdkRoot = sdkPath.append("sdk/osx"); //$NON-NLS-1$
+			modulesRoot = sdkPath.append("modules/osx"); //$NON-NLS-1$
+			runtimeRoot = sdkPath.append("runtime/osx"); //$NON-NLS-1$
 		}
 		else if (Platform.OS_WIN32.equals(Platform.getOS()))
 		{
-			desktopSdkRoot = sdkRoot.append("sdk\\win32"); //$NON-NLS-1$
-			modulesRoot = sdkRoot.append("modules\\win32"); //$NON-NLS-1$
-			runtimeRoot = sdkRoot.append("runtime\\win32"); //$NON-NLS-1$
+			desktopSdkRoot = sdkPath.append("sdk\\win32"); //$NON-NLS-1$
+			modulesRoot = sdkPath.append("modules\\win32"); //$NON-NLS-1$
+			runtimeRoot = sdkPath.append("runtime\\win32"); //$NON-NLS-1$
 		}
 		else if (Platform.OS_LINUX.equals(Platform.getOS()))
 		{
-			desktopSdkRoot = sdkRoot.append("sdk/linux"); //$NON-NLS-1$
-			modulesRoot = sdkRoot.append("modules/linux"); //$NON-NLS-1$
-			runtimeRoot = sdkRoot.append("runtime/linux"); //$NON-NLS-1$
+			desktopSdkRoot = sdkPath.append("sdk/linux"); //$NON-NLS-1$
+			modulesRoot = sdkPath.append("modules/linux"); //$NON-NLS-1$
+			runtimeRoot = sdkPath.append("runtime/linux"); //$NON-NLS-1$
 		}
 		else
 		{
-			initializationStatus = new Status(IStatus.ERROR, DesktopPlugin.PLUGIN_ID, SDKLocator.COMPATIBILITY_ERROR,
+			return new Status(IStatus.ERROR, DesktopPlugin.PLUGIN_ID, SDKLocator.COMPATIBILITY_ERROR,
 					MessageFormat.format(Messages.TitaniumDesktopSDKLocator_unsupportedPlatform, Platform.getOS()),
 					null);
-			return;
 		}
 		if (!desktopSdkRoot.toFile().isDirectory())
 		{
-			initializationStatus = new Status(IStatus.WARNING, DesktopPlugin.PLUGIN_ID, SDKLocator.CONFIGURATION_ERROR,
+			return new Status(IStatus.WARNING, DesktopPlugin.PLUGIN_ID, SDKLocator.CONFIGURATION_ERROR,
 					MessageFormat.format(Messages.TitaniumDesktopSDKLocator_mobileSDKRootNotDirectory,
 							desktopSdkRoot.toOSString()), null);
-			return;
 		}
 
 		// For each of the module directories under the root 'modules' directory, look inside to grab the versions and
@@ -192,6 +182,7 @@ public final class TitaniumDesktopSDKLocator extends SDKLocator
 			watchLocation(modulesRoot, false);
 			watchLocation(runtimeRoot, false);
 		}
+		return Status.OK_STATUS;
 	}
 
 	private void updateVersionToModule(Map<String, List<String>> versionsToModules, String version, String moduleName)

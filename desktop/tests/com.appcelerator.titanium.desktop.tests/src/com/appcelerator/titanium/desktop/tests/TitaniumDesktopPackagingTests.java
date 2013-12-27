@@ -33,7 +33,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 
 import com.appcelerator.titanium.core.TitaniumCorePlugin;
-import com.appcelerator.titanium.core.user.TitaniumUser;
+import com.appcelerator.titanium.core.user.ITitaniumUser;
 import com.appcelerator.titanium.desktop.ui.wizard.Packager;
 import com.aptana.core.util.ResourceUtil;
 
@@ -62,7 +62,7 @@ public class TitaniumDesktopPackagingTests extends TestCase
 
 	public void testDistributeDesktopProject() throws Exception
 	{
-		TitaniumUser user = signIn(USERNAME, PASSWORD);
+		ITitaniumUser user = signIn(USERNAME, PASSWORD);
 		if (!user.isOnline())
 		{
 			user.setOnline(true);
@@ -74,7 +74,7 @@ public class TitaniumDesktopPackagingTests extends TestCase
 	public void testDistributeWithInactiveUser() throws Exception
 	{
 		// App was created with unit_tests@aptana.com, but we are signing in with allen@aptana.com (This should fail)
-		TitaniumUser user = signIn(USERNAME2, PASSWORD);
+		ITitaniumUser user = signIn(USERNAME2, PASSWORD);
 		if (!user.isOnline())
 		{
 			user.setOnline(true);
@@ -84,10 +84,10 @@ public class TitaniumDesktopPackagingTests extends TestCase
 
 	}
 
-	protected TitaniumUser signIn(String username, String password) throws Exception
+	protected ITitaniumUser signIn(String username, String password) throws Exception
 	{
 		TitaniumCorePlugin.getDefault().getUserManager().signIn(username, password);
-		TitaniumUser user = TitaniumCorePlugin.getDefault().getUserManager().getSignedInUser();
+		ITitaniumUser user = TitaniumCorePlugin.getDefault().getUserManager().getSignedInUser();
 		assertNotNull("Current user is null, cannot package desktop project without a valid user.", user);
 		return user;
 	}

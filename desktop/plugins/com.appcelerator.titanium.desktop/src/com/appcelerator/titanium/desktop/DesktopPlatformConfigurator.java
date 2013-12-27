@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Appcelerator, Inc.
+ * Copyright 2012-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,13 +22,12 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 
-import com.appcelerator.titanium.core.ITiAppModel;
-import com.appcelerator.titanium.core.SDKEntity;
-import com.appcelerator.titanium.core.SDKLocator;
-import com.appcelerator.titanium.core.TiAppReconciler;
 import com.appcelerator.titanium.core.TitaniumProject;
+import com.appcelerator.titanium.core.mobile.SDKEntity;
+import com.appcelerator.titanium.core.mobile.SDKLocator;
 import com.appcelerator.titanium.core.platform.IPlatformTypeConfigurator;
-import com.appcelerator.titanium.core.tiapp.TiAppModelUtil;
+import com.appcelerator.titanium.core.tiapp.ITiAppModel;
+import com.appcelerator.titanium.core.tiapp.TiAppReconciler;
 import com.appcelerator.titanium.core.tiapp.TiManifestModel;
 import com.appcelerator.titanium.core.tiapp.TiManifestModel.MODULE;
 import com.aptana.core.util.StringUtil;
@@ -70,7 +69,7 @@ public class DesktopPlatformConfigurator implements IPlatformTypeConfigurator
 		// We might have to update the manifest here after the reconcile, as it may change due to SDK compatibilities.
 		// We do it here, and not in the TiAppReconciler, for dependency reasons (Desktop-specific code that cannot be
 		// accessed from the core plugin).
-		String sdkVersion = TiAppModelUtil.getSDKVersion(reconciledModel);
+		String sdkVersion = reconciledModel.getSDKVersion();
 		if (!StringUtil.isEmpty(sdkVersion))
 		{
 			DesktopSDKEntity sdkEntity = (DesktopSDKEntity) getSDKLocator().findVersion(sdkVersion);
@@ -81,12 +80,12 @@ public class DesktopPlatformConfigurator implements IPlatformTypeConfigurator
 		}
 	}
 
-	public void onTiAppSDKSave(String sdkVersion, TiManifestModel manifestModel, Set<MODULE> mdoules)
+	public void onTiAppSDKSave(String sdkVersion, TiManifestModel manifestModel, Set modules)
 	{
 		if (manifestModel != null)
 		{
 			DesktopSDKEntity sdkEntity = (DesktopSDKEntity) getSDK(sdkVersion);
-			TitaniumDesktopManifestUtil.updateSDKVersion(manifestModel, sdkVersion, sdkEntity, mdoules);
+			TitaniumDesktopManifestUtil.updateSDKVersion(manifestModel, sdkVersion, sdkEntity, modules);
 		}
 	}
 }

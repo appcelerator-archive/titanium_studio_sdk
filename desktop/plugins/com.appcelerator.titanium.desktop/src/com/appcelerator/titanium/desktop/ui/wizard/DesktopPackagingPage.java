@@ -35,6 +35,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
+import com.appcelerator.titanium.core.TitaniumCorePlugin;
 import com.appcelerator.titanium.core.TitaniumProject;
 import com.appcelerator.titanium.desktop.DesktopPlugin;
 
@@ -60,7 +61,7 @@ class DesktopPackagingPage extends WizardPage
 	public DesktopPackagingPage(IProject project)
 	{
 		super("Desktop Packaging", Messages.DesktopPackagingPage_Title, null); //$NON-NLS-1$
-		this.tiProject = new TitaniumProject(project);
+		this.tiProject = getTitaniumProject(project);
 		setImageDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin(DesktopPlugin.PLUGIN_ID,
 				"icons/full/obj16/package.png")); //$NON-NLS-1$
 	}
@@ -380,5 +381,10 @@ class DesktopPackagingPage extends WizardPage
 			releaseButton.setSelection(release);
 			dontReleaseButton.setSelection(!release);
 		}
+	}
+
+	private TitaniumProject getTitaniumProject(IProject project)
+	{
+		return TitaniumCorePlugin.getDefault().getTitaniumProjectFactory().create(project);
 	}
 }

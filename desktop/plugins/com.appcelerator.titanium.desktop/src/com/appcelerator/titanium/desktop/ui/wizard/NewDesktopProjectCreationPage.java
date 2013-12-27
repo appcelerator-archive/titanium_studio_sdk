@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 Appcelerator, Inc.
+ * Copyright 2011-2013 Appcelerator, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 
-import com.appcelerator.titanium.core.SDKEntity;
 import com.appcelerator.titanium.core.TitaniumConstants;
+import com.appcelerator.titanium.core.mobile.SDKEntity;
 import com.appcelerator.titanium.desktop.TitaniumDesktopSDKLocator;
 import com.appcelerator.titanium.ui.wizard.BasicTitaniumProjectCreationPage;
 import com.aptana.core.projects.templates.IProjectTemplate;

@@ -60,7 +60,7 @@ import org.json.simple.parser.ParseException;
 
 import com.appcelerator.titanium.core.TitaniumConstants;
 import com.appcelerator.titanium.core.TitaniumCorePlugin;
-import com.appcelerator.titanium.core.user.TitaniumUser;
+import com.appcelerator.titanium.core.user.ITitaniumUser;
 import com.appcelerator.titanium.desktop.DesktopPlugin;
 import com.appcelerator.titanium.desktop.DesktopUsageUtil;
 import com.aptana.core.logging.IdeLog;
@@ -281,7 +281,7 @@ public class Packager
 	{
 		// FIXME What if user isn't signed in? We can enforce that they must be in enablement of action, but maybe the
 		// sign-in timed out or something.
-		TitaniumUser user = TitaniumCorePlugin.getDefault().getUserManager().getSignedInUser();
+		ITitaniumUser user = TitaniumCorePlugin.getDefault().getUserManager().getSignedInUser();
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("sid", user.getSessionID()); //$NON-NLS-1$
 		data.put("token", user.getToken()); //$NON-NLS-1$
@@ -502,7 +502,7 @@ public class Packager
 
 			// always pass MID
 			data.put("mid", TitaniumCorePlugin.getMID()); //$NON-NLS-1$
-			TitaniumUser user = TitaniumCorePlugin.getDefault().getUserManager().getSignedInUser();
+			ITitaniumUser user = TitaniumCorePlugin.getDefault().getUserManager().getSignedInUser();
 			data.put("sid", user.getSessionID()); //$NON-NLS-1$
 			data.put("token", user.getToken()); //$NON-NLS-1$
 			data.put("uid", user.getUID()); //$NON-NLS-1$
@@ -584,7 +584,7 @@ public class Packager
 	{
 		if (DesktopPlugin.getDefault() != null)
 		{
-			TitaniumUser user = TitaniumCorePlugin.getDefault().getUserManager().getSignedInUser();
+			ITitaniumUser user = TitaniumCorePlugin.getDefault().getUserManager().getSignedInUser();
 			if (user != null && user.isOnline())
 			{
 				return true;

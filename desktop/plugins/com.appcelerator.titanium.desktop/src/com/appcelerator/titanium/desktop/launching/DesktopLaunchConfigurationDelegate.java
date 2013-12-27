@@ -29,12 +29,12 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.model.IProcess;
 
-import com.appcelerator.titanium.core.SDKEntity;
 import com.appcelerator.titanium.core.TitaniumCorePlugin;
 import com.appcelerator.titanium.core.TitaniumProject;
 import com.appcelerator.titanium.core.TitaniumSDKTools;
 import com.appcelerator.titanium.core.launching.TitaniumLaunchConfigurationUtil;
 import com.appcelerator.titanium.core.launching.TitaniumSingleProjectLaunchConfigurationDelegate;
+import com.appcelerator.titanium.core.mobile.SDKEntity;
 import com.appcelerator.titanium.desktop.DesktopPlugin;
 import com.appcelerator.titanium.desktop.DesktopUsageUtil;
 import com.appcelerator.titanium.desktop.TitaniumDesktopSDKTools;
@@ -72,7 +72,7 @@ public class DesktopLaunchConfigurationDelegate extends TitaniumSingleProjectLau
 			throw new CoreException(new Status(IStatus.ERROR, TitaniumCorePlugin.PLUGIN_ID,
 					TitaniumLaunchConfigurationUtil.SUBSCRIPTION_ERROR_CODE, StringUtil.EMPTY, null));
 		}
-		DesktopUsageUtil.sendLaunchEvent(sdkEntity.getVersion(), new TitaniumProject(project));
+		DesktopUsageUtil.sendLaunchEvent(sdkEntity.getVersion(), getTitaniumProject(project));
 		try
 		{
 			Process osProcess = TitaniumSDKTools.run(TitaniumDesktopSDKTools.getDesktopToolPath(project).toOSString(),
@@ -91,5 +91,10 @@ public class DesktopLaunchConfigurationDelegate extends TitaniumSingleProjectLau
 			throw new CoreException(new Status(IStatus.ERROR, DesktopPlugin.PLUGIN_ID,
 					Messages.DesktopLaunchConfigurationDelegate_LaunchProcessFailed_Error, e));
 		}
+	}
+
+	protected TitaniumProject getTitaniumProject(IProject project)
+	{
+		return TitaniumCorePlugin.getDefault().getTitaniumProjectFactory().create(project);
 	}
 }
